@@ -17,7 +17,10 @@ const ExpertSidebar = ({ setUserRole }) => {
     try {
       await newRequest.post("/api/auth/signout");
       localStorage.removeItem("userRole");
-      setUserRole(null);
+      localStorage.removeItem("token");
+      if (typeof setUserRole === "function") {
+        setUserRole(null);
+      }
       navigate('/');
     } catch (err) {
       console.error("Error logging out", err);
@@ -51,6 +54,12 @@ const ExpertSidebar = ({ setUserRole }) => {
             <div className="card">
               <RequestIcon className="icon" />
               <span>Appointment Requests</span>
+            </div>
+          </Link>
+          <Link to="/appointment_history" style={{ textDecoration: "none" }}>
+            <div className="card">
+              <HistoryIcon className="icon" />
+              <span>Appointment History</span>
             </div>
           </Link>
         </div>

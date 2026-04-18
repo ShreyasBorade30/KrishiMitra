@@ -99,8 +99,46 @@
 
           li {
             margin-left: 10px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+
+            .appointment-details {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .status {
+                font-size: 12px;
+                padding: 2px 8px;
+                border-radius: 12px;
+                text-transform: capitalize;
+                font-weight: bold;
+
+                &.pending { background-color: #ffe8cc; color: #f08c00; }
+                &.accepted { background-color: #d3f9d8; color: #2b8a3e; }
+                &.declined { background-color: #fff5f5; color: #e03131; }
+              }
+            }
+
+            .join-call-btn {
+              background-color: var(--primary-green);
+              color: white;
+              border: none;
+              padding: 6px 12px;
+              border-radius: 4px;
+              cursor: pointer;
+              font-size: 14px;
+              transition: background-color 0.3s;
+
+              &:hover {
+                background-color: var(--dark-green);
+              }
+            }
           }
         }
       }

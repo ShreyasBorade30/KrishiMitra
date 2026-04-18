@@ -45,7 +45,7 @@
    - **How it works:** Farmers can record their income from crops and sales, track their expenses, and manage finances through a user-friendly dashboard.
    - **Technology Used:** MongoDB for data storage, React.js for frontend display.
 
-## 🛠️ Technologies Used
+## ️ Technologies Used
 
 - **Frontend:**
   - **React.js** – A JavaScript library for building interactive user interfaces.
@@ -133,13 +133,30 @@ This is just the beginning for AgriConnect, and we are excited about its future.
    ```
 3.**Set up Environment Variables:**
 
-  Create a .env file in the root directory and add the necessary variables, such as API keys for Gemini AI and OpenWeather, and database credentials for MongoDB.  
+  Create a `.env` file in the `backend/` directory and add the following keys. These are essential for the app's functionality:
 
   ```bash
-   GEMINI_API_KEY=your-api-key
-   OPENWEATHER_API_KEY=your-api-key
-  MONGODB_URI=your-mongodb-uri
+   # AI & Database
+   MONGO_URI=your-mongodb-atlas-uri          # To store all user, crop, and marketplace data.
+   JWT_SECRET=your-secret-key               # For secure user login and session management.
+   GROQ_API_KEY=your-groq-api-key           # Powers the high-speed AI Farming Recommendations & Chatbot.
+   
+   # Payments (Razorpay)
+   RAZORPAY_KEY_ID=your-key-id              # Required to initialize the Razorpay Payment Gateway.
+   RAZORPAY_KEY_SECRET=your-key-secret      # Used on the backend to verify secure payment signatures.
+   
+   # Real-time Data APIs
+   OPENWEATHER_API_KEY=your-api-key         # Fetches live weather to provide dynamic AI alerts.
+   NEWS_API_KEY=your-news-api-key           # Fetches latest agricultural news dynamically.
+   PORT=8000                                # The port where your backend server will run.
  ```
+
+### **Why these keys are required?**
+- **GROQ API:** Used in `recommendationController.js` and `notificationsController.js` to generate scientific farming advice.
+- **RAZORPAY:** Used in `marketplaceController.js` to handle product purchases, equipment rentals, and auction wins.
+- **OPENWEATHER:** Used by the backend to fetch local weather, which the AI then uses to suggest irrigation or pest control.
+- **MONGO_URI:** The central database for everything from user profiles to live auction bids.
+
 4. **Start the Development Server:**
 
   Run the following command to start the backend and frontend servers:
