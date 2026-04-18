@@ -8,7 +8,11 @@ export const getFarmingNotifications = async (req, res) => {
         return res.status(500).json({ error: "GROQ_API_KEY is missing" });
     }
     const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-    const weather_key = process.env.OPENWEATHER_API_KEY || '5536c8262dea91ac474b5aa15fa5c774';
+    const weather_key = process.env.OPENWEATHER_API_KEY;
+    
+    if (!weather_key) {
+        console.warn("OPENWEATHER_API_KEY is missing in .env");
+    }
     
     // Retrieve region from query string
     const { region } = req.query;
